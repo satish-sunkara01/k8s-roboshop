@@ -7,7 +7,6 @@ data:
   MONGO: "true"
 
 
-
 apiVersion: app/v1
 kind: Deployment
 metadata:
@@ -48,5 +47,5 @@ spec:
     demo: deployment
   ports:
   - protocol: TCP
-    port: 80 #service-port
-    targetPort: 80 #container-port
+    port: 8080 #service-port
+    targetPort: 8080 #container-port
