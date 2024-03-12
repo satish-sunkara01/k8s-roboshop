@@ -24,7 +24,7 @@ spec:
     spec:
       containers:
       - name: mongodb
-        image: satishsunkara//mongodb:v1
+        image: satishsunkara/mongodb:v1
         imagePullPolicy: Always
 ---
 apiVersion: v1
