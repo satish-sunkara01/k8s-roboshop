@@ -9,7 +9,7 @@ metadata:
     tier: db
 
 spec:
-  replicas: 3
+  replicas: 1
   selector:
     matchLabels:
       project: roboshop
@@ -25,17 +25,18 @@ spec:
       containers:
       - name: mongodb
         image: satishsunkara//mongodb:v1
-        ports:
-        - containerPort: 80
+        imagePullPolicy: Always
 ---
 apiVersion: v1
 kind: Service
 metadata:
-  name: nginx-service
+  name: mongodb
+  namespace: roboshop
 spec:
   selector:
-    app: nginx
-    demo: deployment
+    project: roboshop
+    app: mongodb
+    tier: db
   ports:
   - protocol: TCP
     port: 27017 #service-port
