@@ -6,15 +6,16 @@ metadata:
 data:
   MONGO: "true"
 
+---
 
-apiVersion: app/v1
+apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: mongodb
+  name: catalogue
   namespace: roboshop
   labels:
     project: roboshop
-    app: mongodb
+    app: catalogue
     tier: db
 
 spec:
@@ -22,29 +23,33 @@ spec:
   selector:
     matchLabels:
       project: roboshop
-      app: mongodb
+      app: catalogue
       tier: db
   template:
     metadata:
       labels:
         project: roboshop
-        app: mongodb
+        app: catalogue
         tier: db
     spec:
       containers:
-      - name: mongodb
-        image: mongodb
-        ports:
-        - containerPort: 80
+      - name: catalogue
+        image: satishsunkara/catalogue:v1
+        imagePullPolicy: Always
+        envFrom:
+        - configMapRef:
+            name: catalogue
 ---
 apiVersion: v1
 kind: Service
 metadata:
-  name: nginx-service
+  name: catalogue
+  namespace: roboshop
 spec:
   selector:
-    app: nginx
-    demo: deployment
+    project: roboshop
+    app: catalogue
+    tier: db
   ports:
   - protocol: TCP
     port: 8080 #service-port
