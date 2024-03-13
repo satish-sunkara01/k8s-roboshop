@@ -18,7 +18,7 @@ metadata:
   labels:
     project: roboshop
     app: payment
-    tier: db
+    tier: app
 
 spec:
   replicas: 1
@@ -26,13 +26,13 @@ spec:
     matchLabels:
       project: roboshop
       app: payment
-      tier: db
+      tier: app
   template:
     metadata:
       labels:
         project: roboshop
         app: payment
-        tier: db
+        tier: app
     spec:
       containers:
       - name: payment
@@ -51,8 +51,8 @@ spec:
   selector:
     project: roboshop
     app: payment
-    tier: db
+    tier: app
   ports:
   - protocol: TCP
-    port: 5672 #service-port
-    targetPort: 5672 #container-port
+    port: 8080 #service-port
+    targetPort: 8080 #container-port
