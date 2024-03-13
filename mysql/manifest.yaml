@@ -52,6 +52,8 @@ spec:
         envFrom:
         - configMapRef:
             name: mysql
+        - secretRef:
+            name: mysql
 ---
 apiVersion: v1
 kind: Service
